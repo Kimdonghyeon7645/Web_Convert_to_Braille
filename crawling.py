@@ -9,10 +9,11 @@ def crawling(url):
     driver.get(url)
     driver.implicitly_wait(10)
     html = driver.page_source
-    driver.close()
     return html
+    driver.close()
 
 
 if __name__ == '__main__':
     print('연결 테스트 입니다.')
     print(crawling('https://hihd.imweb.me/'))
+

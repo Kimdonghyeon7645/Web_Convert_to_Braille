@@ -7,15 +7,15 @@ class Convert:
     def __init__(self, url):
         self.html = crawling(url)
         self.soup = BeautifulSoup(self.html, 'html.parser')
-        self.hangul = self.soup.select('body context')
-        if self.hangul is []:
-            self.__no_hangul__ = re.compile("""[^ ㄱ-ㅣ가-힣|'"]+""")
-            self.hangul = self.__no_hangul__.sub('', str(self.soup))
-        self.wow = self.soup.get_text
+        self.hangul = self.soup.select('body')
+        self.__no_hangul__ = re.compile("""[^ ㄱ-ㅣ가-힣]+""")
+        self.hangul = self.__no_hangul__.sub('', str(self.hangul))
+        self.content_list = list(n.strip() for n in self.hangul.split('  ') if n != '')
 
 
 p = Convert('http://www.itworld.co.kr/news/150073')
-print(p.hangul)
-print(p.wow)
+for ele in p.content_list:
+    print(ele)
 q = Convert('https://bodhi-sattva.tistory.com/89')
-print(q.hangul)
+for ele in q.content_list:
+    print(ele)
