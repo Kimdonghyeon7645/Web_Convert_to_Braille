@@ -13,7 +13,7 @@ class Convert:
         self.content_list = list(n.strip() for n in self.hangul.split('  ') if n != '')
 
 
-p = Convert('http://www.itworld.co.kr/news/150073')
+p = Convert('https://news.naver.com/')
 for ele in p.content_list:
     print(ele)
 q = Convert('https://bodhi-sattva.tistory.com/89')
